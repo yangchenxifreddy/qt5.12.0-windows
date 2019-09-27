@@ -1,0 +1,70 @@
+ #include <stdlib.h>
+  2 #include <stdio.h>
+  3
+  4 //http://webrates.truefx.com/rates/connect.html?id=jsTrader:Ou812:ozrates:1253889202204&c=EUR/USD,USD/JPY
+  5
+  6 //jsTrader:Ou812:ozrates:1543475434864
+  7
+  8
+  9 #include <iostream>
+ 10 #include <sstream>
+ 11
+ 12 using namespace std;
+ 13 #define SSTR( x ) static_cast< std::ostringstream & >( \
+ 14         ( std::ostringstream() << std::dec << x ) ).str()
+ 15
+ 16
+ 17 int main()
+ 18 {
+ 19
+ 20
+ 21 string monthstrarray[12]={
+ 22 "JANUARY","FEBRUARY","MARCH","APRIL","MAY",
+ 23 "JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"};
+ 24
+ 
+ 
+  string fxname[15]={"AUDJPY","AUDNZD","AUDISD","CADJPY","CHFJPY","EURCHF","EURGBP","EURJPY","EURUSD","GBPJPY","GBPUSD","NZDUSD","USDCAD","USDCHF","USDJPY"    };
+ 
+ 
+ 
+ 
+  string wgetstr="wget http://www.truefx.com/dev/data/";
+ 
+  string cmdstr;
+  string yearstr,filepathstr,filenamestr,monthstr;
+  int filepatheng = 0;
+                                                                                                                                                           38 for(int year= 2010;year<2019;year++)
+ 39 {
+ 40 //yearstr= year;
+ 41 yearstr= SSTR(year);
+ 42
+ 43 system("cd /usr/snjdju/fxdata/data_tick");
+ 44 cmdstr = "cd "+ yearstr;
+ 45 system(cmdstr.c_str());
+ 46    if(2016< year)
+ 47        filepatheng = 0;
+ 48
+ 49 {
+ 50 char cmonth[2];
+ 51
+ 52 for(int type=0; type< 15;type++)
+ 53 {
+ 54 cmdstr =" mkdir "+ fxname[type];
+ 55 system( cmdstr.c_str());
+ 56
+ 57 cmdstr = "mv ";
+ 58 cmdstr+= fxname[type]+"-*  "+ fxname[type];
+ 59
+ 60 cout<<cmdstr<<endl;
+ 61 system(cmdstr.c_str());
+ 62
+ 63 }
+ 64 }
+ 65
+ 66
+ 67
+ 68 }
+ 69
+  return 0;
+ }
